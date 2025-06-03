@@ -22,10 +22,11 @@ typedef struct Container
 
 void generate_grid(Container *container, int rows, int cols)
 {
+   printf("---INFO => generating grid %d x %d \n", rows, cols);
    int rect_count = rows*cols;
    int padding = ((WIN_WIDTH - (rows * RECT_LEN))/2);
-   container = malloc((sizeof(Rectangle) * rect_count) + sizeof(Container));
-   printf("size of allocated memeory: %ld \n", sizeof(container));
+   int *buffer = malloc((sizeof(Rectangle) * rect_count) + sizeof(Container));
+   printf("---INFO => size of allocated memeory: %ld \n", sizeof(buffer));
    if (container == NULL) printf("Failed to allocate memory\n");
     
    for (int x=0; x<rows; x++)
@@ -45,6 +46,7 @@ void generate_grid(Container *container, int rows, int cols)
 void start_randomizer(Container *container)
 {
     printf("starting randomizer \n");
+    printf("size of rect container: %ld \n", sizeof(container));
     for (int i=0; i<container->count; i++)
     {
         DrawRectangleRounded(container[i].rect, RECT_ROUNDNESS, 1, DEFAULT_RECT_COLOR); 
